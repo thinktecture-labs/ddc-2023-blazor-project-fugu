@@ -1,4 +1,16 @@
 ﻿//EX#16-2
+export async function initializeLaunchQueue(component) {
+    if ('launchQueue' in window) {
+        window.launchQueue.setConsumer(async params => {
+            const [handle] = params.files;
+            if (handle) {
+                const file = await handle.getFile();
+                await createImageElement(file);
+                component.invokeMethodAsync('DrawImageAsync');
+            }
+        });
+    }
+}
 
 export function registerEvents(id, component) {
     const target = document.getElementById(id);
