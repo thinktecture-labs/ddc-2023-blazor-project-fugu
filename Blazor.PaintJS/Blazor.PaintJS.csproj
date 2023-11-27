@@ -1,18 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Excubo.Blazor.Canvas" Version="3.2.36" />
+    <PackageReference Include="Excubo.Blazor.Canvas" Version="3.2.34" />
     <PackageReference Include="KristofferStrube.Blazor.FileSystem" Version="0.3.1" />
     <PackageReference Include="KristofferStrube.Blazor.FileSystemAccess" Version="3.2.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.14" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.14" PrivateAssets="all" />
     <PackageReference Include="Thinktecture.Blazor.AsyncClipboard" Version="2.0.0" />
     <PackageReference Include="Thinktecture.Blazor.Badging" Version="2.0.0" />
     <PackageReference Include="Thinktecture.Blazor.FileHandling" Version="2.0.0" />
