@@ -1,10 +1,10 @@
 {
-  "name": "PaintJS",
-  "short_name": "PJS",
+  "name": "DDC PaintJS",
+  "short_name": "DDC-PJS",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#ff00ff",
-  "theme_color": "#ff00ff",
+  "background_color": "#808080",
+  "theme_color": "#000080",
   "prefer_related_applications": false,
   "icons": [
     {
@@ -16,6 +16,15 @@
       "src": "icon-192.png",
       "type": "image/png",
       "sizes": "192x192"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "About Paint",
+      "short_name": "About",
+      "description": "Show info about paint.",
+      "url": "./about",
+      "icons":  [{"src": "icon-192.png", "size": "192x192", "type": "image/png"}]
     }
   ]
 }
