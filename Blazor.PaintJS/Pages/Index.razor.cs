@@ -121,23 +121,38 @@ namespace Blazor.PaintJS.Pages
         {
             //EX#4
             //EX#5
-            var currentPoint = new Point
+            if (_previousPoint != null)
             {
-                X = (int)Math.Floor(args.OffsetX),
-                Y = (int)Math.Floor(args.OffsetY)
-            };
-            await using var context = await _canvas!.GetContext2DAsync(desynchronized: true);
-            await context.FillRectAsync(currentPoint.X, currentPoint.Y, 2, 2);
+                var currentPoint = new Point
+                {
+                    X = (int)Math.Floor(args.OffsetX),
+                    Y = (int)Math.Floor(args.OffsetY)
+                };
+                var points = _paintService.BrensenhamLine(_previousPoint.Value, currentPoint);
+                await using var context = await _canvas!.GetContext2DAsync(desynchronized: true);
+                foreach (var point in points)
+                {
+                    await context.FillRectAsync(point.X, point.Y, 2, 2);
+                }
+                _previousPoint = currentPoint;
+            }
         }
 
         private async void OnPointerDown(PointerEventArgs args)
         {
-           //EX#4 
+            //EX#4
+            _previousPoint = new Point
+            {
+                X = (int)Math.Floor(args.OffsetX),
+                Y = (int)Math.Floor(args.OffsetY)
+            };
         }
 
         private async void OnColorChange(ChangeEventArgs args)
         {
             //EX#6
+            await using var context = await _canvas!.GetContext2DAsync();
+            await context.FillStyleAsync(args.Value?.ToString());
         }
 
         private async Task DownloadFile()
@@ -155,10 +170,10 @@ namespace Blazor.PaintJS.Pages
 
         private async Task ResetCanvas()
         {
-            //await using var context = await _canvas!.GetContext2DAsync();
-            //await context.FillStyleAsync("white");
-            //await context.FillRectAsync(0, 0, 600, 480);
-            //await context.FillStyleAsync("black");
+            await using var context = await _canvas!.GetContext2DAsync();
+            await context.FillStyleAsync("white");
+            await context.FillRectAsync(0, 0, 600, 480);
+            await context.FillStyleAsync("black");
             //await UpdateBage(true);
         }     
         #endregion
