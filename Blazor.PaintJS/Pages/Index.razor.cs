@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System.Drawing;
 using KristofferStrube.Blazor.FileSystem;
+using Excubo.Blazor.Canvas;
 
 namespace Blazor.PaintJS.Pages
 {
@@ -37,6 +38,7 @@ namespace Blazor.PaintJS.Pages
         #endregion
 
         //EX#1
+        private Canvas? _canvas;
         private Point? _previousPoint;
         private int _hasChanges = 0;
 
@@ -68,6 +70,10 @@ namespace Blazor.PaintJS.Pages
                 try
                 {
                     //EX#2
+                    await using var context = await _canvas!.GetContext2DAsync(desynchronized: true);
+                    await context.FillStyleAsync("white");
+                    await context.FillRectAsync(0, 0, 600, 480);
+                    await context.FillStyleAsync("black");
 
                     //EX#16 - 3
                 }
