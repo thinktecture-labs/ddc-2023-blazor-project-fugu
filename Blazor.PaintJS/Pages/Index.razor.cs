@@ -121,6 +121,13 @@ namespace Blazor.PaintJS.Pages
         {
             //EX#4
             //EX#5
+            var currentPoint = new Point
+            {
+                X = (int)Math.Floor(args.OffsetX),
+                Y = (int)Math.Floor(args.OffsetY)
+            };
+            await using var context = await _canvas!.GetContext2DAsync(desynchronized: true);
+            await context.FillRectAsync(currentPoint.X, currentPoint.Y, 2, 2);
         }
 
         private async void OnPointerDown(PointerEventArgs args)
